@@ -1,0 +1,46 @@
+Setup gitlab on ssl (Follow https://www.bonusbits.com/wiki/HowTo:Setup_HTTPS_for_Gitlab)
+
+vi /etc/gitlab/gitlab.rb
+
+Add the below line of code to the file
+
+
+
+
+
+
+external_url "https://gitlab"
+#External url used for accessing your gitlab instance
+gitlab_rails['omniauth_enabled'] = true
+gitlab_rails['gitlab_signin_enabled'] = true
+ gitlab_rails['omniauth_allow_single_sign_on'] = ['saml']
+  gitlab_rails['omniauth_block_auto_created_users'] = false
+gitlab_rails['omniauth_auto_link_saml_user'] = true
+  gitlab_rails['omniauth_providers'] = [
+    {
+      name: 'saml',
+        groups_attribute: 'http://wso2.org/claims/role',
+  admin_groups: ['Managers', 'Admins','admin'],
+      args: {
+               #here the string https://gitlab should be changed with your external url 
+               assertion_consumer_service_url: 'https://gitlab/users/auth/saml/callback',
+               #You should geet SHA1 certificate finger print of your idp certificate
+               idp_cert_fingerprint: '50:1F:C1:43:2D:87:15:5D:C4:31:38:2A:EB:84:3E:D5:58:AD:61:B1',
+               #sso url for your WSO2 IS . https://wso2:9443 is the WSO2 is url for my lab
+               idp_sso_target_url: 'https://wso2:9443/samlsso',
+               #This can be anything , but make sure to give the same issuer name in your SP as well
+               issuer: 'https://gitlab',
+
+               name_identifier_format: 'urn:oasis:names:tc:SAML:2.0:nameid-format:persistent',
+#Gitlab needs email as a mandatory attribute .If the claim attribute name is not email or mail then you should
+#define it in the attribute attribute_statements . Here http://wso2.org/claims/emailaddress is the claim which will get mapped as email atribute 
+attribute_statements: { email: ['http://wso2.org/claims/emailaddress'] },
+allowed_clock_drift: 30,
+
+             }
+    }
+  ]
+
+  Setup WSO2 is . create a new Service provider 
+  Issuer name should match the issuer label in gitlab.rb 
+  emailaddress address should be part of the saml response
