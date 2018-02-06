@@ -46,3 +46,10 @@ allowed_clock_drift: 30,
   Issuer name should match the issuer label in gitlab.rb 
   emailaddress address should be part of the saml response
   
+  Known issues:
+  1)After configuring SAML,after signing in login page redirects back with out any error . 
+  This issue and resolution is mentioned here http://eric.van-der-vlist.com/blog/2013/11/23/how-to-customize-gitlab-to-support-openid-authentication/#Disable-protect_from_forgery-in-omniauth_callbacks_controllerrb 
+  
+  2)How to disable normal sign in option and allow only saml login
+  https://stackoverflow.com/questions/26618030/gitlab-disable-regular-username-password-login-and-only-allow-omniauth-login
+  
