@@ -42,7 +42,7 @@ allowed_clock_drift: 30,
   ]
 #Ends here
 
-  Setup WSO2 is . create a new Service provider (Screenshots in README file)
+  Setup WSO2 IS . create a new Service provider (Screenshots in README file https://github.com/sumeshkanayi/gitlab-wso2/blob/master/README.md)
   Issuer name should match the issuer label in gitlab.rb 
   emailaddress address should be part of the saml response
   
