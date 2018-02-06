@@ -1,5 +1,10 @@
 # gitlab-wso2
-All configuation required for gitlab and WSO2
+
+Integrate gitlab with WSO2 IS and saml service provider
+
+
+https://docs.gitlab.com/ee/integration/saml.html
+
 
 Service provider configuration is attached below
 
