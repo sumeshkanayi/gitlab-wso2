@@ -7,7 +7,7 @@ Add the below line of code to the file
 
 
 
-
+#Begins here
 
 external_url "https://gitlab"
 #External url used for accessing your gitlab instance
@@ -40,7 +40,9 @@ allowed_clock_drift: 30,
              }
     }
   ]
+#Ends here
 
   Setup WSO2 is . create a new Service provider 
   Issuer name should match the issuer label in gitlab.rb 
   emailaddress address should be part of the saml response
+  
